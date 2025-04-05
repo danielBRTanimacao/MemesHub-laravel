@@ -1,0 +1,8 @@
+:root {
+    --principal-bg: oklch(21% 0.006 285.885);
+}
+
+body {
+    background-color: var(--principal-bg);
+    color: white;
+}
