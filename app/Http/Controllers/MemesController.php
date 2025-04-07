@@ -49,7 +49,7 @@ class MemesController extends Controller
         $meme->update($request->all());
 
         return response()->json(
-            ["message"=>"meme foi modificado"], 200
+            ["message"=>"meme foi modificado"], 201
         );
     }
 
@@ -57,6 +57,6 @@ class MemesController extends Controller
         $meme = Meme::findOrFail($id);
 
         $meme->destroy($id);
-        return response()->json(["message"=>"Meme deletado com sucesso!", "meme"=> $meme]);
+        return response()->json(["message"=>"Meme deletado com sucesso!", "meme"=> $meme], 201);
     }
 }

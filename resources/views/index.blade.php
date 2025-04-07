@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>index</title>
 </head>
 <body>
@@ -22,16 +23,7 @@
             </a>
         </div>
     </header>
-    <div class="flex flex-col items-center justify-center">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy3kfJSIHhx2u7uXB98HCF7oZKpI0ebfQzUQ&s" alt="mamaco">
-        <div class="flex">
-            <h3>item</h3>
-            <div class="ps-2">
-                <h4>Nome do meme</h4>
-            </div>
-        </div>
-        <small>descriptions</small>
-    </div>
+    <main id="showMemes"></main>
     <script src="{{ asset('js/getMemes.js') }}"></script>
 </body>
 </html>
