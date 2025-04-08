@@ -27,12 +27,20 @@ const getMemes = () => {
                 `;
 
                 // TODO:
-                // Criar botão deslike
-                // Modificar banco de dados MEMES adicionar like e deslike
-                // Adicionar o contador de likes e deslikes
+                // Colocar um coração no lugar do like
+                // Modificar banco de dados MEMES adicionar like, e numero de comentarios
+                // Adicionar o contador de likes
+                // No backend criar rota /api/liked/{id_meme} Criar logica para apenas 1 like do post especifico
+                // Rota para deslike /api/disliked/{id_meme} Criar logica para remover 1 like do post especifico
+                // iniciar um design para adicionar comentarios
+                // Criar tipo um form, text e post
                 // Refatorar função utilizando metodologia clean
                 // Criar usuario
-                // Novas Features:
+
+                // Criar db comentarios
+                // Rota para adicionar o comentario /api/comment/{id_meme}
+                // Rota para remover /api/del/commment/{id_meme}
+                // Rota para update /api/update/commment/{id_meme}
                 //
 
                 const btnLike = document.querySelectorAll(".like-btn");
