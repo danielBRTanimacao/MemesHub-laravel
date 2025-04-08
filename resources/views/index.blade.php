@@ -23,7 +23,7 @@
             </a>
         </div>
     </header>
-    <main id="showMemes"></main>
+    <main class="flex flex-col justify-center items-center" id="showMemes"></main>
     <script src="{{ asset('js/getMemes.js') }}"></script>
 </body>
 </html>

@@ -10,23 +10,28 @@ const getMemes = () => {
                     "pt-2",
                     "flex",
                     "flex-col",
-                    "items-center",
-                    "justify-center"
+                    "justify-center",
+                    "h-[70dvh]"
                 );
+
                 memeDiv.innerHTML = `
-                    <img width="200" id="meme-img" src="${e.image}" alt="${e.image}">
-                    <div class="flex">
+                    <h4>${e.name}</h4>
+                    <img width="300" id="meme-img" src="${e.image}" alt="${e.image}">
+                    <div class="flex items-center">
                         <button data-liked="false" type="button" class="text-xl flex flex-col cursor-pointer like-btn">
                             <i class="bi bi-heart"></i>
                             <span class="text-sm">
                                 ${e.likes}
                             </span>
                         </button>
-                        <div class="ps-2">
-                            <h4>${e.name}</h4>
-                        </div>
+                        <button type="button" class="text-xl flex flex-col cursor-pointer">
+                            <i class="bi bi-chat-dots"></i>
+                            <span class="text-sm">
+                                ${e.comments}
+                            </span>
+                        </button>
+                        <small class="">${e.description}</small>
                     </div>
-                    <small>${e.description}</small>
                 `;
 
                 const btnLike = document.querySelectorAll(".like-btn");
