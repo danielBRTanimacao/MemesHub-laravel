@@ -16,8 +16,9 @@ const getMemes = () => {
                 memeDiv.innerHTML = `
                     <img width="200" id="meme-img" src="${e.image}" alt="${e.image}">
                     <div class="flex">
-                        <button data-liked="false" type="button" class="cursor-pointer like-btn">
-                            <i class="bi bi-hand-thumbs-up"></i>
+                        <button data-liked="false" type="button" class="flex flex-col cursor-pointer like-btn">
+                            <i class="bi bi-heart"></i>
+                            ${e.likes}
                         </button>
                         <div class="ps-2">
                             <h4>${e.name}</h4>
@@ -27,8 +28,6 @@ const getMemes = () => {
                 `;
 
                 // TODO:
-                // Colocar um coração no lugar do like
-                // Modificar banco de dados MEMES adicionar like, e numero de comentarios
                 // Adicionar o contador de likes
                 // No backend criar rota /api/liked/{id_meme} Criar logica para apenas 1 like do post especifico
                 // Rota para deslike /api/disliked/{id_meme} Criar logica para remover 1 like do post especifico
@@ -50,12 +49,10 @@ const getMemes = () => {
                         const liked = e.getAttribute("data-liked") === "true";
 
                         if (liked) {
-                            e.innerHTML =
-                                '<i class="bi bi-hand-thumbs-up"></i>';
+                            e.innerHTML = '<i class="bi bi-heart"></i>';
                             e.setAttribute("data-liked", "false");
                         } else {
-                            e.innerHTML =
-                                '<i class="bi bi-hand-thumbs-up-fill"></i>';
+                            e.innerHTML = '<i class="bi bi-heart-fill"></i>';
                             e.setAttribute("data-liked", "true");
                         }
                     });
