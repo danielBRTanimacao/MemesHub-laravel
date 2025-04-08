@@ -59,4 +59,18 @@ class MemesController extends Controller
         $meme->destroy($id);
         return response()->json(["message"=>"Meme deletado com sucesso!", "meme"=> $meme], 201);
     }
+
+    public function addLike($id) {
+        $meme = Meme::findOrFail($id);
+        $meme->update(['likes'=> $meme['likes'] + 1]);
+
+        return response()->json(["message"=>"Like no post!", "meme"=> $meme], 201);
+    }
+
+    public function removeLike($id) {
+        $meme = Meme::findOrFail($id);
+        $meme->update(['likes'=> $meme['likes'] - 1]);
+
+        return response()->json(["message"=>"Like removido no post!", "meme"=> $meme], 201);
+    }
 }

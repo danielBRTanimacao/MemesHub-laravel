@@ -13,5 +13,7 @@ class Meme extends Model
         'name',
         'image',
         'description',
+        'likes',
+        'comments'
     ];
 }

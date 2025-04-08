@@ -16,9 +16,11 @@ const getMemes = () => {
                 memeDiv.innerHTML = `
                     <img width="200" id="meme-img" src="${e.image}" alt="${e.image}">
                     <div class="flex">
-                        <button data-liked="false" type="button" class="flex flex-col cursor-pointer like-btn">
+                        <button data-liked="false" type="button" class="text-xl flex flex-col cursor-pointer like-btn">
                             <i class="bi bi-heart"></i>
-                            ${e.likes}
+                            <span class="text-sm">
+                                ${e.likes}
+                            </span>
                         </button>
                         <div class="ps-2">
                             <h4>${e.name}</h4>
@@ -27,33 +29,29 @@ const getMemes = () => {
                     <small>${e.description}</small>
                 `;
 
-                // TODO:
-                // Adicionar o contador de likes
-                // No backend criar rota /api/liked/{id_meme} Criar logica para apenas 1 like do post especifico
-                // Rota para deslike /api/disliked/{id_meme} Criar logica para remover 1 like do post especifico
-                // iniciar um design para adicionar comentarios
-                // Criar tipo um form, text e post
-                // Refatorar função utilizando metodologia clean
-                // Criar usuario
-
-                // Criar db comentarios
-                // Rota para adicionar o comentario /api/comment/{id_meme}
-                // Rota para remover /api/del/commment/{id_meme}
-                // Rota para update /api/update/commment/{id_meme}
-                //
-
                 const btnLike = document.querySelectorAll(".like-btn");
 
-                btnLike.forEach((e) => {
-                    e.addEventListener("click", () => {
-                        const liked = e.getAttribute("data-liked") === "true";
+                btnLike.forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        const liked = btn.getAttribute("data-liked") === "true";
 
                         if (liked) {
-                            e.innerHTML = '<i class="bi bi-heart"></i>';
-                            e.setAttribute("data-liked", "false");
+                            btn.innerHTML = `
+                                <i class="bi bi-heart"></i>
+                                <span class="text-sm">
+                                    ${e.likes}
+                                </span>
+                            `;
+
+                            btn.setAttribute("data-liked", "false");
                         } else {
-                            e.innerHTML = '<i class="bi bi-heart-fill"></i>';
-                            e.setAttribute("data-liked", "true");
+                            btn.innerHTML = `
+                                <i class="bi bi-heart-fill text-red-800"></i>
+                                <span class="text-sm">
+                                    ${e.likes}
+                                </span>
+                            `;
+                            btn.setAttribute("data-liked", "true");
                         }
                     });
                 });
@@ -64,3 +62,15 @@ const getMemes = () => {
 };
 
 getMemes();
+
+// TODO:
+// iniciar um design para adicionar comentarios
+// Criar tipo um form, text e post
+// Refatorar função utilizando metodologia clean
+// Criar usuario
+
+// Criar db comentarios
+// Rota para adicionar o comentario /api/comment/{id_meme}
+// Rota para remover /api/del/commment/{id_meme}
+// Rota para update /api/update/commment/{id_meme}
+//
