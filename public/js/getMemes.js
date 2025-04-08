@@ -16,7 +16,7 @@ const getMemes = () => {
                 memeDiv.innerHTML = `
                     <img width="200" id="meme-img" src="${e.image}" alt="${e.image}">
                     <div class="flex">
-                        <button data-liked="false" id="like-btn" type="button" class="cursor-pointer">
+                        <button data-liked="false" type="button" class="cursor-pointer like-btn">
                             <i class="bi bi-hand-thumbs-up"></i>
                         </button>
                         <div class="ps-2">
@@ -26,7 +26,16 @@ const getMemes = () => {
                     <small>${e.description}</small>
                 `;
 
-                const btnLike = document.querySelectorAll("#like-btn");
+                // TODO:
+                // Criar botão deslike
+                // Modificar banco de dados MEMES adicionar like e deslike
+                // Adicionar o contador de likes e deslikes
+                // Refatorar função utilizando metodologia clean
+                // Criar usuario
+                // Novas Features:
+                //
+
+                const btnLike = document.querySelectorAll(".like-btn");
 
                 btnLike.forEach((e) => {
                     e.addEventListener("click", () => {
