@@ -1,74 +1,51 @@
-const getMemes = () => {
+window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 10) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+});
+
+function toggleLike(btn) {
+    const icon = btn.querySelector("i");
+    icon.classList.toggle("fas");
+    icon.classList.toggle("far");
+    btn.classList.toggle("liked");
+}
+
+function checkInput(input) {
+    const btn = input.nextElementSibling;
+    btn.disabled = input.value.trim().length === 0;
+}
+
+function addComment(form, event) {
+    event.preventDefault();
+    const input = form.querySelector(".comment-input");
+    const commentsSection = form.previousElementSibling;
+
+    if (input.value.trim()) {
+        const newComment = document.createElement("div");
+        newComment.className = "comment";
+        newComment.innerHTML = `<span class="fw-bold">você</span> ${input.value}`;
+        commentsSection.appendChild(newComment);
+        input.value = "";
+        form.querySelector(".post-btn").disabled = true;
+    }
+    return false;
+}
+
+function getMemes() {
     fetch("http://127.0.0.1:8000/api")
         .then((response) => response.json())
         .then((data) => {
-            const mainMemes = document.querySelector("main#showMemes");
-
-            data.forEach((e) => {
-                const memeDiv = document.createElement("div");
-                memeDiv.classList.add(
-                    "pt-2",
-                    "flex",
-                    "flex-col",
-                    "justify-center",
-                    "h-[70dvh]"
-                );
-
-                memeDiv.innerHTML = `
-                    <h4>${e.name}</h4>
-                    <img width="300" id="meme-img" src="${e.image}" alt="${e.image}">
-                    <div class="flex items-center">
-                        <button data-liked="false" type="button" class="text-xl flex flex-col cursor-pointer like-btn">
-                            <i class="bi bi-heart"></i>
-                            <span class="text-sm">
-                                ${e.likes}
-                            </span>
-                        </button>
-                        <button type="button" class="text-xl flex flex-col cursor-pointer">
-                            <i class="bi bi-chat-dots"></i>
-                            <span class="text-sm">
-                                ${e.comments}
-                            </span>
-                        </button>
-                        <small class="">${e.description}</small>
-                    </div>
-                `;
-
-                const btnLike = memeDiv.querySelector(".like-btn");
-
-                btnLike.addEventListener("click", () => {
-                    const liked = btnLike.getAttribute("data-liked") === "true";
-
-                    if (liked) {
-                        btnLike.innerHTML = `
-                            <i class="bi bi-heart"></i>
-                            <span class="text-sm">
-                                ${e.likes + 1}
-                            </span>
-                        `;
-                        btnLike.setAttribute("data-liked", "false");
-                    } else {
-                        btnLike.innerHTML = `
-                            <i class="bi bi-heart-fill text-red-800"></i>
-                            <span class="text-sm">
-                                ${e.likes - 1}
-                            </span>
-                        `;
-                        btnLike.setAttribute("data-liked", "true");
-                    }
-                });
-
-                mainMemes.appendChild(memeDiv);
-            });
+            console.log(data);
         });
-};
+}
 
 getMemes();
 
 // TODO:
-// iniciar um design para adicionar comentarios
-// Criar tipo um form, text e post
-// Refatorar função utilizando metodologia clean
 // Criar usuario
 
 // Criar db comentarios
