@@ -34,31 +34,28 @@ const getMemes = () => {
                     </div>
                 `;
 
-                const btnLike = document.querySelectorAll(".like-btn");
+                const btnLike = memeDiv.querySelector(".like-btn");
 
-                btnLike.forEach((btn) => {
-                    btn.addEventListener("click", () => {
-                        const liked = btn.getAttribute("data-liked") === "true";
+                btnLike.addEventListener("click", () => {
+                    const liked = btnLike.getAttribute("data-liked") === "true";
 
-                        if (liked) {
-                            btn.innerHTML = `
-                                <i class="bi bi-heart"></i>
-                                <span class="text-sm">
-                                    ${e.likes}
-                                </span>
-                            `;
-
-                            btn.setAttribute("data-liked", "false");
-                        } else {
-                            btn.innerHTML = `
-                                <i class="bi bi-heart-fill text-red-800"></i>
-                                <span class="text-sm">
-                                    ${e.likes}
-                                </span>
-                            `;
-                            btn.setAttribute("data-liked", "true");
-                        }
-                    });
+                    if (liked) {
+                        btnLike.innerHTML = `
+                            <i class="bi bi-heart"></i>
+                            <span class="text-sm">
+                                ${e.likes + 1}
+                            </span>
+                        `;
+                        btnLike.setAttribute("data-liked", "false");
+                    } else {
+                        btnLike.innerHTML = `
+                            <i class="bi bi-heart-fill text-red-800"></i>
+                            <span class="text-sm">
+                                ${e.likes - 1}
+                            </span>
+                        `;
+                        btnLike.setAttribute("data-liked", "true");
+                    }
                 });
 
                 mainMemes.appendChild(memeDiv);
