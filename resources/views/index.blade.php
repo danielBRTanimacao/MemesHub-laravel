@@ -53,10 +53,10 @@
                             <span class="fw-bold">meme_lover</span> <!-- Dono do post -->
                         </div>
                         <small class="ps-3 fw-light">
-                            {{ $meme['description'] }}
+                            {{ $meme['name'] }}
                         </small>
                         <div class="post-image">
-                            <img src="{{ $meme['image'] }}" alt="{{ $meme['image'] }}">
+                            <img src="{{ asset('storage/' . $meme['image']) }}" alt="{{ $meme['image'] }}">
                         </div>
                         <div class="post-actions">
                             <button class="action-btn" onclick="toggleLike(this)">

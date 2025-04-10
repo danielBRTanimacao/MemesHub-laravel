@@ -36,10 +36,8 @@ function addComment(form, event) {
 }
 
 // TODO:
-// Finalizar o POST enviar os dados e criar memes
-// Salvar imagem enviada no servidor
-
 // Criar db comentarios
+// Refatorar routes
 // Rota para adicionar o comentario /api/comment/{id_meme}
 // Rota para remover /api/del/commment/{id_meme}
 // Rota para update /api/update/commment/{id_meme}

@@ -24,7 +24,7 @@ class MemesController extends Controller
             "description"=>"nullable|string"
         ]);
 
-        $path = $request->file('image')->store('public/images');
+        $path = $request->file('image')->store('images', 'public');
 
         $meme = Meme::create(
             [
@@ -34,12 +34,7 @@ class MemesController extends Controller
             ]
         );
         
-        return response()->json(
-            [
-                "message"=>"meme criado com sucesso!", 
-                "meme"=>$meme
-            ], 201
-        );
+        return redirect()->route('index');
     }
 
     public function updateMeme(Request $request, $id) {
