@@ -9,9 +9,13 @@ window.addEventListener("scroll", function () {
 
 function toggleLike(btn) {
     const icon = btn.querySelector("i");
+    // const numbersOfLikes = document.querySelector("span.nLikes");
     icon.classList.toggle("fas");
     icon.classList.toggle("far");
     btn.classList.toggle("liked");
+
+    // const sum = Number(numbersOfLikes.innerHTML) + 1;
+    // numbersOfLikes.innerHTML = sum;
 }
 
 function checkInput(input) {
@@ -36,6 +40,7 @@ function addComment(form, event) {
 }
 
 // TODO:
+// Criar função de dar like e enviar para o banco de dados
 // Criar db comentarios
 // Refatorar routes
 // Rota para adicionar o comentario /api/comment/{id_meme}

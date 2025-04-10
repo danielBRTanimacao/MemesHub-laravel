@@ -120,7 +120,8 @@ body {
     color: var(--pink-variant);
 }
 
-.likes {
+.likes,
+.comments {
     font-weight: 600;
     margin: 8px 12px;
 }

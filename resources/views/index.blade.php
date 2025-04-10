@@ -70,8 +70,8 @@
                             </button>
                         </div>
                         <div class="d-flex">
-                            <div class="likes">{{ $meme['likes'] }} curtidas</div>
-                            <div class="likes">{{ $meme['comments'] }} comentarios</div>
+                            <div class="likes"><span class="nLikes">{{ $meme['likes'] }}</span> curtidas</div>
+                            <div class="comments"><span class="nComments">{{ $meme['comments'] }}</span> comentarios</div>
                         </div>
                         <div class="comments-section">
                             <div class="comment">
