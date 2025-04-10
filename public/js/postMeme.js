@@ -25,7 +25,7 @@ document
             });
 
             if (response.ok) {
-                console.log("enviado :)");
+                console.log("enviado :)"); // se ocorrer tudo bem recarregar a pagina
             } else {
                 console.log("Não foi enviado");
             }

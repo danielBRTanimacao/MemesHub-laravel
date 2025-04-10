@@ -46,39 +46,47 @@
             <!-- Conteúdo Principal -->
             <div class="col-lg-6 col-md-6">
                 <!-- Post Card -->
-                <div class="post-card">
-                    <div class="post-header">
-                        <img src="https://i.pravatar.cc/150?img=1" alt="User Avatar">
-                        <span class="fw-bold">meme_lover</span>
-                    </div>
-                    <div class="post-image">
-                        <img src="https://static.wikia.nocookie.net/dead-rails/images/7/79/Bigwolf.jpg" alt="Meme">
-                    </div>
-                    <div class="post-actions">
-                        <button class="action-btn" onclick="toggleLike(this)">
-                            <i class="far fa-heart"></i>
-                        </button>
-                        <button class="action-btn">
-                            <i class="far fa-comment"></i>
-                        </button>
-                        <button class="action-btn">
-                            <i class="far fa-paper-plane"></i>
-                        </button>
-                    </div>
-                    <div class="likes">1,234 curtidas</div>
-                    <div class="comments-section">
-                        <div class="comment">
-                            <span class="fw-bold">user123</span> Muito bom! 😂
+                @foreach ($memes as $meme)
+                    <div class="post-card">
+                        <div class="post-header">
+                            <img src="https://i.pravatar.cc/150?img=1" alt="User Avatar">
+                            <span class="fw-bold">meme_lover</span> <!-- Dono do post -->
                         </div>
-                        <div class="comment">
-                            <span class="fw-bold">meme_master</span> Sensacional!
+                        <small class="ps-3 fw-light">
+                            {{ $meme['description'] }}
+                        </small>
+                        <div class="post-image">
+                            <img src="{{ $meme['image'] }}" alt="{{ $meme['image'] }}">
                         </div>
+                        <div class="post-actions">
+                            <button class="action-btn" onclick="toggleLike(this)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="action-btn">
+                                <i class="far fa-comment"></i>
+                            </button>
+                            <button class="action-btn">
+                                <i class="far fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div class="d-flex">
+                            <div class="likes">{{ $meme['likes'] }} curtidas</div>
+                            <div class="likes">{{ $meme['comments'] }} comentarios</div>
+                        </div>
+                        <div class="comments-section">
+                            <div class="comment">
+                                <span class="fw-bold">user123</span> Muito bom! 😂
+                            </div>
+                            <div class="comment">
+                                <span class="fw-bold">meme_master</span> Sensacional!
+                            </div>
+                        </div>
+                        <form class="comment-form" onsubmit="return addComment(this, event)">
+                            <input type="text" class="comment-input" placeholder="Adicione um comentário..." oninput="checkInput(this)">
+                            <button type="submit" class="post-btn" disabled="">Publicar</button>
+                        </form>
                     </div>
-                    <form class="comment-form" onsubmit="return addComment(this, event)">
-                        <input type="text" class="comment-input" placeholder="Adicione um comentário..." oninput="checkInput(this)">
-                        <button type="submit" class="post-btn" disabled="">Publicar</button>
-                    </form>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

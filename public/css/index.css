@@ -1,11 +1,23 @@
+:root {
+    --principal-blue: #0095f6;
+    --blue-opacity: rgba(0, 149, 246, 0.2);
+    --lightnes-blue: #f8f9fa;
+    --light-opacity: rgba(255, 255, 255, 0.9);
+    --comun-light: #efefef;
+    --black-opacity: rgba(0, 0, 0, 0.1);
+    --dark-variant: #262626;
+    --principal-gray: #8e8e8e;
+    --pink-variant: #ed4956;
+}
+
 body {
     background-color: #fafafa;
 }
 
 .navbar {
     backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--light-opacity);
+    box-shadow: 0 1px 10px var(--black-opacity);
     position: fixed;
     top: 0;
     width: 100%;
@@ -26,16 +38,16 @@ body {
 .search-input {
     width: 100%;
     padding: 10px 40px 10px 15px;
-    border: 1px solid #efefef;
+    border: 1px solid var(--comun-light);
     border-radius: 20px;
-    background-color: #f8f9fa;
+    background-color: var(--lightnes-blue);
     transition: all 0.3s ease;
 }
 
 .search-input:focus {
     outline: none;
-    border-color: #0095f6;
-    box-shadow: 0 0 0 2px rgba(0, 149, 246, 0.2);
+    border-color: var(--principal-blue);
+    box-shadow: 0 0 0 2px var(--blue-opacity);
     background-color: white;
 }
 
@@ -44,21 +56,21 @@ body {
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #8e8e8e;
+    color: var(--principal-gray);
     pointer-events: none;
 }
 
 .post-card {
     background: white;
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px var(--black-opacity);
     margin-bottom: 20px;
     transition: transform 0.2s ease;
 }
 
 .post-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--black-opacity);
 }
 
 .post-card .post-image {
@@ -93,19 +105,19 @@ body {
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: #262626;
+    color: var(--dark-variant);
     cursor: pointer;
     margin-right: 12px;
     transition: all 0.2s ease;
 }
 
 .action-btn:hover {
-    color: #8e8e8e;
+    color: var(--principal-gray);
     transform: scale(1.1);
 }
 
 .action-btn.liked {
-    color: #ed4956;
+    color: var(--pink-variant);
 }
 
 .likes {
@@ -115,7 +127,7 @@ body {
 
 .comments-section {
     padding: 12px;
-    border-top: 1px solid #efefef;
+    border-top: 1px solid var(--comun-light);
 }
 
 .comment {
@@ -125,7 +137,7 @@ body {
 .comment-form {
     display: flex;
     padding: 12px;
-    border-top: 1px solid #efefef;
+    border-top: 1px solid var(--comun-light);
 }
 
 .comment-input {
@@ -138,7 +150,7 @@ body {
 .post-btn {
     border: none;
     background: none;
-    color: #0095f6;
+    color: var(--principal-blue);
     font-weight: 600;
     cursor: pointer;
     transition: opacity 0.2s ease;
@@ -158,8 +170,8 @@ body {
 }
 
 footer {
-    background: linear-gradient(to right, #ffffff, #f8f9fa);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to right, #ffffff, var(--lightnes-blue));
+    border-top: 1px solid var(--black-opacity);
 }
 
 .social-links a {

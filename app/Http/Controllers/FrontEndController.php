@@ -2,9 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Meme;
+
 class FrontEndController extends Controller
 {
     public function index() {
-        return view('index');
+        $memes = Meme::all();
+        $context = [
+            "memes"=>$memes
+        ];
+        
+        return view('index', $context);
     }
 }

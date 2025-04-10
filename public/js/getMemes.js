@@ -35,7 +35,7 @@ function addComment(form, event) {
     return false;
 }
 
-function getMemes() {
+function loadMemes() {
     fetch("http://127.0.0.1:8000/api")
         .then((response) => response.json())
         .then((data) => {
@@ -43,13 +43,9 @@ function getMemes() {
         });
 }
 
-getMemes();
+loadMemes();
 
 // TODO:
-// Organizar o css utilizar variaveis e remover classes não utilizadas
-// Criar função FETCH GetMemes retorna um data com os valores
-// Criar uma function que renderize o POST HTML renderPost
-// Criar uma função addLike e uma para removeLike necessario fazer um fetch no backend
 // Finalizar o POST enviar os dados e criar memes
 // Salvar imagem enviada no servidor
 
