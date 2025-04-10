@@ -7,24 +7,29 @@ use Illuminate\Http\Request;
 
 class MemesController extends Controller
 {
-    public function getAllMemes() {
+    public function index() {
         $memes = Meme::all();
-
-        return $memes->toArray();
+        $context = [
+            "memes"=>$memes
+        ];
+        
+        return view('index', $context);
     }
 
     public function createMeme(Request $request) {
 
         $request->validate([
             "name"=>"required|string|max:255",
-            "image"=>"required|string|max:255", // Modificar para salvar imagem
+            "image"=>"required|image|mimes:jpeg,png,jpg,gif|max:2048",
             "description"=>"nullable|string"
         ]);
+
+        $path = $request->file('image')->store('public/images');
 
         $meme = Meme::create(
             [
                 "name"=> $request->name,
-                "image"=> $request->image,
+                "image"=> str_replace('public/', '', $path),
                 "description"=> $request->description,
             ]
         );

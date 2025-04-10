@@ -35,16 +35,6 @@ function addComment(form, event) {
     return false;
 }
 
-function loadMemes() {
-    fetch("http://127.0.0.1:8000/api")
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-        });
-}
-
-loadMemes();
-
 // TODO:
 // Finalizar o POST enviar os dados e criar memes
 // Salvar imagem enviada no servidor
@@ -53,4 +43,4 @@ loadMemes();
 // Rota para adicionar o comentario /api/comment/{id_meme}
 // Rota para remover /api/del/commment/{id_meme}
 // Rota para update /api/update/commment/{id_meme}
-//
+// olhar numero de objs na pagina para fazer o load
