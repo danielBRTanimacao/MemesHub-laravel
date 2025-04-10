@@ -90,7 +90,8 @@
     </div>
     <div class="modal fade" id="uploadModal" tabindex="-1" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
-            <form class="modal-content">
+            <form method="POST" class="modal-content">
+                @csrf
                 <div class="modal-header">
                     <h5 class="modal-title">Compartilhar Meme</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -98,15 +99,15 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">Escolha uma imagem</label>
-                        <input type="file" class="form-control" accept="image/*" id="img-fild">
+                        <input type="file" class="form-control" accept="image/*" id="img-fild" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Nome do seu Meme</label>
-                        <input type="text" class="form-control" placeholder="Qual nome dele..." id="name-fild">
+                        <input type="text" class="form-control" placeholder="Qual nome dele..." id="name-fild" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Descrição</label>
-                        <textarea class="form-control" rows="3" placeholder="Adicione uma descrição..." id="description-fild"></textarea>
+                        <textarea class="form-control" rows="3" placeholder="Adicione uma descrição..." id="description-fild" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

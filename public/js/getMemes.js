@@ -46,7 +46,12 @@ function getMemes() {
 getMemes();
 
 // TODO:
-// Criar usuario
+// Organizar o css utilizar variaveis e remover classes não utilizadas
+// Criar função FETCH GetMemes retorna um data com os valores
+// Criar uma function que renderize o POST HTML renderPost
+// Criar uma função addLike e uma para removeLike necessario fazer um fetch no backend
+// Finalizar o POST enviar os dados e criar memes
+// Salvar imagem enviada no servidor
 
 // Criar db comentarios
 // Rota para adicionar o comentario /api/comment/{id_meme}

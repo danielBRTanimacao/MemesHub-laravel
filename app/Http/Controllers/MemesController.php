@@ -17,7 +17,7 @@ class MemesController extends Controller
 
         $request->validate([
             "name"=>"required|string|max:255",
-            "image"=>"required|string|max:255",
+            "image"=>"required|string|max:255", // Modificar para salvar imagem
             "description"=>"nullable|string"
         ]);
 

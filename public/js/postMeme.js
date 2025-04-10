@@ -21,11 +21,13 @@ document
         try {
             const response = await fetch("http://127.0.0.1:8000/api/create", {
                 method: "POST",
-                body: JSON.stringify(data),
+                body: JSON.stringify(data), // Utilizar o form data e remover isso
             });
 
             if (response.ok) {
                 console.log("enviado :)");
+            } else {
+                console.log("Não foi enviado");
             }
         } catch (error) {
             console.log(error);
