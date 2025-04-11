@@ -5,18 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Meme;
 use Illuminate\Http\Request;
 
-
 class MemesController extends Controller
 {
-    public function index() {
-        $memes = Meme::all();
-        $context = [
-            "title"=> "index",
-            "memes"=>$memes
-        ];
-        
-        return view('index', $context);
-    }
 
     public function createMeme(Request $request) {
 

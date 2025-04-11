@@ -33,6 +33,9 @@
                 <input type="checkbox" class="form-check-input" id="showPassword">
                 <label class="form-check-label" for="showPassword">Mostrar senha</label>
             </div>
+            <div class="mb-3 form-check">
+                <a href="{{ route('loginForm') }}">Login</a>
+            </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </div>
     </form>

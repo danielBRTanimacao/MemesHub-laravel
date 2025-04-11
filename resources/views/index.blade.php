@@ -12,12 +12,16 @@
 <body>
     <nav class="navbar py-2">
         <div class="container">
-            <a class="navbar-brand fw-bold text-dark" href="#">HubMemes</a>
+            <a class="navbar-brand fw-bold text-dark" href="/">HubMemes</a>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Pesquisar memes...">
                 <i class="fas fa-search search-icon"></i>
             </div>
-            <div style="width: 100px;"></div>
+            <div class="post-header" style="width: 100px;">
+                <a href="{{ route("userView", [Auth::user()->name]) }}">
+                    <img src="https://i.pravatar.cc/150?img=1" alt="User Avatar">
+                </a>
+            </div>
         </div>
     </nav>
 

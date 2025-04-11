@@ -1,12 +1,16 @@
 <?php
 
 use App\Http\Controllers\MemesController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [MemesController::class, "index"])->name('index')->middleware('auth');
-Route::get('/login', [MemesController::class, "login"])->name('login')->middleware('guest');
-Route::get('/register', [MemesController::class, "registerForm"])->name('registerForm')->middleware('guest');
-Route::post('/register', [MemesController::class, "register"])->name('register')->middleware('guest');
+Route::get('/', [UserController::class, "index"])->name('index')->middleware('auth');
+Route::get('/user/{username}', [UserController::class, "userView"])->name('userView')->middleware('auth');
+Route::get('/login', [UserController::class, "loginForm"])->name('loginForm')->middleware('guest');
+Route::post('/login', [UserController::class, "login"])->name('login')->middleware('guest');
+Route::get('/register', [UserController::class, "registerForm"])->name('registerForm')->middleware('guest');
+Route::post('/register', [UserController::class, "register"])->name('register')->middleware('guest');
+Route::get('/logout', [UserController::class, "logout"])->name('logout')->middleware('auth');
 
 Route::post('/create', [MemesController::class, "createMeme"])->name('createMeme');
 Route::put('/update/{id}', [MemesController::class, "updateMeme"])->name('updateMeme');

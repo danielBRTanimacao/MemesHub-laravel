@@ -10,7 +10,28 @@
     <title>{{ $title }}</title>
 </head>
 <body>
-    content
+    <form action="{{ route('login') }}" method="POST" class="d-flex justify-content-center align-items-center" style="height: 100dvh">
+        @csrf
+        <div>
+            <div class="mb-3">
+                <label for="nameId" class="form-label">Nome:</label>
+                <input name="name" type="text" class="form-control" id="nameId" required>
+            </div>
+            <div class="mb-3">
+                <label for="passwordId" class="form-label">Senha:</label>
+                <input name="password" type="password" class="form-control" id="passwordId" required>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="showPassword">
+                <label class="form-check-label" for="showPassword">Mostrar senha</label>
+            </div>
+            <div class="mb-3 form-check">
+                <a href="{{ route('loginForm') }}">Login</a>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+    </form>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
