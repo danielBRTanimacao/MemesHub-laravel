@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>index</title>
+    <title>{{ $title }}</title>
 </head>
 <body>
     <nav class="navbar py-2">
@@ -59,8 +59,8 @@
                             <img src="{{ asset('storage/' . $meme['image']) }}" alt="{{ $meme['image'] }}">
                         </div>
                         <div class="post-actions">
-                            <button class="action-btn" onclick="toggleLike(this)">
-                                <i class="far fa-heart"></i>
+                            <button class="action-btn" onclick="toggleLike(this, {{ $meme['id'] }})">
+                                <i class="{{ $meme['liked'] ? 'fas' : 'far' }} fa-heart"></i>
                             </button>
                             <button class="action-btn">
                                 <i class="far fa-comment"></i>
@@ -70,7 +70,12 @@
                             </button>
                         </div>
                         <div class="d-flex">
-                            <div class="likes"><span class="nLikes">{{ $meme['likes'] }}</span> curtidas</div>
+                            <div class="likes">
+                                <span class="nLikes">
+                                    {{ $meme['likes'] }}
+                                </span> 
+                                curtidas
+                            </div>
                             <div class="comments"><span class="nComments">{{ $meme['comments'] }}</span> comentarios</div>
                         </div>
                         <div class="comments-section">

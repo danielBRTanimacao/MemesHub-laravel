@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Meme;
 use Illuminate\Http\Request;
 
+
 class MemesController extends Controller
 {
     public function index() {
         $memes = Meme::all();
         $context = [
+            "title"=> "index",
             "memes"=>$memes
         ];
         
@@ -60,17 +62,19 @@ class MemesController extends Controller
         return response()->json(["message"=>"Meme deletado com sucesso!", "meme"=> $meme], 201);
     }
 
-    public function addLike($id) {
-        $meme = Meme::findOrFail($id);
-        $meme->update(['likes'=> $meme['likes'] + 1]);
-
-        return response()->json(["message"=>"Like no post!", "meme"=> $meme], 201);
-    }
-
     public function removeLike($id) {
         $meme = Meme::findOrFail($id);
-        $meme->update(['likes'=> $meme['likes'] - 1]);
+        $meme->likes = max(0, $meme->likes - 1);
+        $meme->save();
 
-        return response()->json(["message"=>"Like removido no post!", "meme"=> $meme], 201);
+        return response()->json(['success' => true, 'likes' => $meme->likes]);
+    }
+
+    public function addLike($id) {
+        $meme = Meme::findOrFail($id);
+        $meme->likes += 1;
+        $meme->save();
+
+        return response()->json(['success' => true, 'likes' => $meme->likes]);
     }
 }

@@ -7,15 +7,33 @@ window.addEventListener("scroll", function () {
     }
 });
 
-function toggleLike(btn) {
+function toggleLike(btn, memeId) {
     const icon = btn.querySelector("i");
-    // const numbersOfLikes = document.querySelector("span.nLikes");
-    icon.classList.toggle("fas");
-    icon.classList.toggle("far");
-    btn.classList.toggle("liked");
+    const numbersOfLikes = btn
+        .closest(".post-card")
+        .querySelector("span.nLikes");
 
-    // const sum = Number(numbersOfLikes.innerHTML) + 1;
-    // numbersOfLikes.innerHTML = sum;
+    const isLiked = icon.classList.contains("fas");
+
+    const endpoints = isLiked
+        ? `/api/liked/${memeId}`
+        : `/api/disliked/${memeId}`;
+
+    fetch(endpoints, {
+        method: "POST",
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.success) {
+                icon.classList.toggle("fas");
+                icon.classList.toggle("far");
+                btn.classList.toggle("liked");
+                numbersOfLikes.innerText = data.likes;
+            } else {
+                console.log("Deu ruim doido!");
+            }
+        })
+        .catch((error) => console.log(error));
 }
 
 function checkInput(input) {
@@ -41,6 +59,7 @@ function addComment(form, event) {
 
 // TODO:
 // Criar função de dar like e enviar para o banco de dados
+// Criar usuarios e fazer validações
 // Criar db comentarios
 // Refatorar routes
 // Rota para adicionar o comentario /api/comment/{id_meme}
