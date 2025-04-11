@@ -26,12 +26,11 @@
                 <label class="form-check-label" for="showPassword">Mostrar senha</label>
             </div>
             <div class="mb-3 form-check">
-                <a href="{{ route('loginForm') }}">Login</a>
+                <a href="{{ route('registerForm') }}">Register</a>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </div>
     </form>
-    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

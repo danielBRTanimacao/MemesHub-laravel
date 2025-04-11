@@ -58,8 +58,6 @@ function addComment(form, event) {
 }
 
 // TODO:
-// Criar função de dar like e enviar para o banco de dados
-// Criar usuarios e fazer validações
 // Criar db comentarios
 // Refatorar routes
 // Rota para adicionar o comentario /api/comment/{id_meme}

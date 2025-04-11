@@ -64,9 +64,15 @@ class UserController extends Controller
     public function login(Request $request) {
         $request->validate([
             "name"=>"required|string|max:255",
-            "email"=>"required|image|mimes:jpeg,png,jpg,gif|max:2048",
-            "password"=>"nullable|string"
+            "password"=>"required|string|min:8"
         ]);
+
+        Auth::attempt(
+            ['email' => $request->string('email'),
+            'password' => $request->string('password'),
+        ]);
+
+        return redirect()->route('index');
     }
 
     public function logout() {
