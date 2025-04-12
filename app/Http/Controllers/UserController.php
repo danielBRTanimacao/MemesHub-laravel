@@ -90,9 +90,9 @@ class UserController extends Controller
         $user = Auth::user();
 
         $request->validate([
-            "name"=>"required|string|max:255",
-            "email"=>"required|string|email|max:255|unique:users",
-            "password"=>"required|string|min:8"
+            "name" => "required|string|max:255",
+            "email" => "required|string|email|max:255|unique:users,email," . $id,
+            "password" => "required|string|min:8|same:password_confirm",
         ]);
 
         if ($user->id == $id) {
@@ -100,7 +100,7 @@ class UserController extends Controller
                 [
                     'name'=>$request->input('name'),
                     'email'=>$request->input('email'),
-                    'password'=>$request->bcrypt('password')
+                    'password'=>bcrypt($request->password)
                 ]
             );
 

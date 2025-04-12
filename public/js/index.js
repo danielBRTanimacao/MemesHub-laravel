@@ -58,6 +58,8 @@ function addComment(form, event) {
 }
 
 // TODO:
+// CRiar design do usuario
+// modificar banco de dados criar owners para publicações
 // Criar db comentarios
 // Refatorar routes
 // Rota para adicionar o comentario /api/comment/{id_meme}
