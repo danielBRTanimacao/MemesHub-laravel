@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar py-2">
         <div class="container">
-            <a class="navbar-brand fw-bold text-dark" href="/">HubMemes</a>
+            <a class="navbar-brand fw-bold text-dark" href="/">MemesHub</a>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Pesquisar memes...">
                 <i class="fas fa-search search-icon"></i>
@@ -54,7 +54,7 @@
                     <div class="post-card">
                         <div class="post-header">
                             <img src="https://i.pravatar.cc/150?img=1" alt="User Avatar">
-                            <span class="fw-bold">meme_lover</span> <!-- Dono do post -->
+                            <span class="fw-bold">{{ Auth::user()->name }}</span> <!-- MOdificar essa parte para mostrar o dono do post -->
                         </div>
                         <small class="ps-3 fw-light">
                             {{ $meme['name'] }}

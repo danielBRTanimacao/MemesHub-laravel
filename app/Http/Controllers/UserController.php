@@ -7,6 +7,7 @@ use App\Models\Meme;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -62,16 +63,49 @@ class UserController extends Controller
     }
 
     public function login(Request $request) {
-        $request->validate([
+        $credentials = $request->validate([
             "name"=>"required|string|max:255",
             "password"=>"required|string|min:8"
         ]);
 
-        Auth::attempt(
-            ['email' => $request->string('email'),
-            'password' => $request->string('password'),
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('index');
+        }
+    }
+
+    public function updateForm($id, $username) {
+        $context = [
+            "title"=>"Update $username"
+        ];
+
+        if (Auth::user()->id == $id) {
+            return view('update', $context);
+        }
+        return redirect()->route('index');
+    }
+
+    public function update(Request $request, $id, $username) {
+        $user = Auth::user();
+
+        $request->validate([
+            "name"=>"required|string|max:255",
+            "email"=>"required|string|email|max:255|unique:users",
+            "password"=>"required|string|min:8"
         ]);
 
+        if ($user->id == $id) {
+            DB::table('users')->where('id', $user->id)->update(
+                [
+                    'name'=>$request->input('name'),
+                    'email'=>$request->input('email'),
+                    'password'=>$request->bcrypt('password')
+                ]
+            );
+
+            return redirect()->route('index');
+        }
         return redirect()->route('index');
     }
 

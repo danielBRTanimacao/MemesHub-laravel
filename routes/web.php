@@ -10,6 +10,8 @@ Route::get('/login', [UserController::class, "loginForm"])->name('loginForm')->m
 Route::post('/login', [UserController::class, "login"])->name('login')->middleware('guest');
 Route::get('/register', [UserController::class, "registerForm"])->name('registerForm')->middleware('guest');
 Route::post('/register', [UserController::class, "register"])->name('register')->middleware('guest');
+Route::get('/update/{id}/{username}', [UserController::class, "updateForm"])->name('updateForm')->middleware('auth');
+Route::put('/update/{id}/{username}', [UserController::class, "update"])->name('update')->middleware('auth');
 Route::get('/logout', [UserController::class, "logout"])->name('logout')->middleware('auth');
 
 Route::post('/create', [MemesController::class, "createMeme"])->name('createMeme');
