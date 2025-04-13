@@ -58,6 +58,7 @@
                         </div>
                         <small class="ps-3 fw-light">
                             {{ $meme['name'] }}
+                            {{ $meme }}
                         </small>
                         <div class="post-image">
                             <img src="{{ asset('storage/' . $meme['image']) }}" alt="{{ $meme['image'] }}">

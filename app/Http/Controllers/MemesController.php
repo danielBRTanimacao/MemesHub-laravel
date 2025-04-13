@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Meme;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MemesController extends Controller
 {
@@ -18,8 +19,9 @@ class MemesController extends Controller
 
         $path = $request->file('image')->store('images', 'public');
 
-        $meme = Meme::create(
+        Meme::create(
             [
+                "user_id"=> Auth::id(),
                 "name"=> $request->name,
                 "image"=> str_replace('public/', '', $path),
                 "description"=> $request->description,
