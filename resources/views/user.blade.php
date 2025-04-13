@@ -5,74 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>{{ $title }}</title>
 </head>
 <body>
-    <main class="row pt-4">
-        <div class="text-center col-md-2 shadow-lg">
-            <a href="{{ route("index") }}" class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">voltar</a>
+    <main>
+        <div class="text-center shadow-lg pb-4">
+            <a href="{{ route('index') }}" class="d-block text-decoration-none">Voltar</a>
             <div class="pt-3">
                 <img class="rounded-circle" src="https://i.pravatar.cc/150?img=1" alt="User Avatar">
             </div>
             <h3 class="lead pt-1">{{ Auth::user()->name }}</h3>
-            <div class="row col gap-2">
-                <div>
-                    <a class="w-75 btn btn-danger" href="{{ route("logout") }}">Sair</a>
-                </div>
-                <div>
-                    <a class="w-75 btn btn-primary" href="{{ route("updateForm", [Auth::user()->id, Auth::user()->name]) }}">Update</a>
-                </div>
+            <div class="d-flex justify-content-center gap-2 pt-2">
+                <a class="btn btn-danger" href="{{ route('logout') }}">Sair</a>
+                <a class="btn btn-primary" href="{{ route('updateForm', [Auth::user()->id, Auth::user()->name]) }}">Update</a>
             </div>
         </div>
-        <div class="col-md-2"></div> <!-- Ajeitar essa parte remover -->
-        <div class="col-md-6">
-            @foreach ($memes as $meme)
-                <div class="post-card">
-                    <div class="d-flex justify-content-between">
-                        <small class="ps-3 fw-light">
-                            {{ $meme['name'] }}
-                        </small>
-                        <a href="#" class="btn fw-bold" data-bs-toggle="modal" data-bs-target="#modalOptionsPost">...</a>
+
+        <div class="container mt-4 py-2">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
+                @foreach ($memes as $meme)
+                    <div class="col">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalOptionsPost">
+                            <div class="position-relative">
+                                <img class="img-fluid rounded" src="{{ asset('storage/' . $meme['image']) }}" alt="meme" style="object-fit: cover; width: 100%; height: 300px;">
+                                <div class="rounded-bottom position-absolute bottom-0 start-0 bg-dark bg-opacity-50 text-white p-1 w-100 d-flex gap-2 px-2">
+                                    <small><i class="far fa-heart"></i> {{ $meme['likes'] ?? 0 }}</small>
+                                    <small><i class="far fa-comment"></i> {{ $meme['comments'] ?? 0 }}</small>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="post-actions">
-                    
-                        <button class="action-btn" onclick="toggleLike(this, {{ $meme['id'] }})">
-                            <i class="far fa-heart"></i>
-                            <small>{{ $meme['likes'] }}</small>
-                        </button>
-                       
-                        <button class="action-btn">
-                            <i class="far fa-comment"></i>
-                            <small>{{ $meme['comments'] }}</small>
-                        </button>
-                    </div>
-                    <div class="post-image bg-secondary-subtle">
-                        <img src="{{ asset('storage/' . $meme['image']) }}" alt="{{ $meme['image'] }}">
-                    </div>
-                    
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </main>
+
     <div class="modal fade" id="modalOptionsPost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalOptionsPostLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="modalOptionsPostLabel">Modal title</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalOptionsPostLabel">Opções do Post</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    Conteúdo do post ou opções aqui.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Salvar</button>
+                </div>
             </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Understood</button>
-            </div>
-          </div>
         </div>
-      </div>      
+    </div>      
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
