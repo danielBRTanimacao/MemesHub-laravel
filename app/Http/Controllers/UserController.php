@@ -22,8 +22,10 @@ class UserController extends Controller
     }
 
     public function userView($username) {
+        $memes = Meme::all();
         $context = [
             "title"=> $username,
+            "memes"=> $memes
         ];
         return view('user', $context);
     }
