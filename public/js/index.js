@@ -58,7 +58,6 @@ function addComment(form, event) {
 }
 
 // TODO:
-// Criar db comentarios o comentario precisa pertencer a um post alem disso o comentario precisa pertencer a um user
 // Refatorar routes
 // Refatorar js
 // Rota para adicionar o comentario /api/comment/{id_meme}

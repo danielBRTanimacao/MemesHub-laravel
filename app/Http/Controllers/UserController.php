@@ -2,27 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commentary;
 use App\Models\User;
 use App\Models\Meme;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function index() {
+        // Feat criar pagination
         $memes = Meme::all();
+        $commentaries = Commentary::all();
         $context = [
             "title"=> "index",
-            "memes"=>$memes
+            "memes"=>$memes,
+            "commentary"=>$commentaries
         ];
         
         return view('index', $context);
     }
 
     public function userView($username) {
-        $memes = Meme::all();
+        $memes = Meme::where('user_id', Auth::id())->get();
         $context = [
             "title"=> $username,
             "memes"=> $memes
@@ -48,12 +53,13 @@ class UserController extends Controller
             [
                 "name"=>$request->name,
                 "email"=>$request->email,
-                "password"=>$request->password
+                "password"=>Hash::make($request->password)
             ]
         );
 
         event(new Registered($user));
         Auth::login($user);
+
         return redirect()->route('index');
     }
 
@@ -75,6 +81,8 @@ class UserController extends Controller
 
             return redirect()->intended('index');
         }
+
+        return back()->withErrors(['name'=>"Credenciais estão incorretas"]);
     }
 
     public function updateForm($id, $username) {

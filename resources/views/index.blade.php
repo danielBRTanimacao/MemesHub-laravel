@@ -54,7 +54,7 @@
                     <div class="post-card">
                         <div class="post-header">
                             <img src="https://i.pravatar.cc/150?img=1" alt="User Avatar">
-                            <span class="fw-bold">{{ Auth::user()->name }}</span> <!-- MOdificar essa parte para mostrar o dono do post -->
+                            <span class="fw-bold">{{  }}</span>
                         </div>
                         <small class="ps-3 fw-light">
                             {{ $meme['name'] }}
