@@ -53,8 +53,8 @@
                 @foreach ($memes as $meme)
                     <div class="post-card">
                         <div class="post-header">
-                            <img src="https://i.pravatar.cc/150?img=1" alt="User Avatar">
-                            <span class="fw-bold">{{  }}</span>
+                            <img src="https://fakeimg.pl/150/" alt="User Avatar">
+                            <span class="fw-bold">{{ $meme->user->name }}</span>
                         </div>
                         <small class="ps-3 fw-light">
                             {{ $meme['name'] }}
