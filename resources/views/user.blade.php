@@ -50,6 +50,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body">
+                    <form action="#" method="post">
+                        @csrf
+                        @method('PUT')
+                    </form>
                     Conteúdo do post ou opções aqui.
                 </div>
                 <div class="modal-footer">

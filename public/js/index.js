@@ -13,7 +13,7 @@ function toggleLike(btn, memeId) {
         .closest(".post-card")
         .querySelector("span.nLikes");
 
-    const isLiked = icon.classList.contains("fas");
+    const isLiked = icon.classList.contains("far");
 
     const endpoints = isLiked
         ? `/api/liked/${memeId}`
@@ -25,8 +25,8 @@ function toggleLike(btn, memeId) {
         .then((response) => response.json())
         .then((data) => {
             if (data.success) {
-                icon.classList.toggle("fas");
                 icon.classList.toggle("far");
+                icon.classList.toggle("fas");
                 btn.classList.toggle("liked");
                 numbersOfLikes.innerText = data.likes;
             } else {
@@ -58,6 +58,7 @@ function addComment(form, event) {
 }
 
 // TODO:
+// Configurar like e deslike salvar na db
 // Rota para adicionar o comentario /api/comment/{id_meme}
 // Rota para remover /api/del/commment/{id_meme}
 // Rota para update /api/update/commment/{id_meme}
