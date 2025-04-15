@@ -58,8 +58,6 @@ function addComment(form, event) {
 }
 
 // TODO:
-// Refatorar routes
-// Refatorar js
 // Rota para adicionar o comentario /api/comment/{id_meme}
 // Rota para remover /api/del/commment/{id_meme}
 // Rota para update /api/update/commment/{id_meme}

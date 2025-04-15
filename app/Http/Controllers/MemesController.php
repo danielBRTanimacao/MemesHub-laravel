@@ -62,10 +62,8 @@ class MemesController extends Controller
         return response()->json(['success' => true, 'likes' => $meme->likes]);
     }
 
-    public function addLike($id) {
-        $meme = Meme::findOrFail($id);
-        $meme->likes += 1;
-        $meme->save();
+    public function addLike(Meme $meme) {
+        $meme->increment('likes');
 
         return response()->json(['success' => true, 'likes' => $meme->likes]);
     }
