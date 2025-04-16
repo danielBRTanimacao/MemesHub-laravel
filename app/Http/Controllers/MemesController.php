@@ -34,13 +34,19 @@ class MemesController extends Controller
     public function updateMeme(Request $request, $id) {
         $request->validate([
             "name"=>"string|max:255",
-            "image"=>"string|max:255",
+            "image"=>"required|image|mimes:jpeg,png,jpg,gif|max:2048",
             "description"=>"nullable|string"
         ]);
 
+        $path = $request->file('image')->store('images', 'public');
+
         $meme = Meme::findOrFail($id);
 
-        $meme->update($request->all());
+        $meme->update([
+            "name"=>"string|max:255",
+            "image"=>str_replace('public/', '', $path),
+            "description"=>"nullable|string"
+        ]);
 
         return redirect()->route('index');
     }

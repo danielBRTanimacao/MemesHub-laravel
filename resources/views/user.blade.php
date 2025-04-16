@@ -57,7 +57,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Descrição</label>
-                                            <textarea class="form-control" rows="3" placeholder="Adicione uma descrição..." name="description" id="description-fild" required></textarea>
+                                            <textarea class="form-control" rows="3" placeholder="Adicione uma descrição..." name="description" id="description-fild"></textarea>
                                         </div>
                                         <a href="{{ route('delMeme', $meme['id']) }}" class="btn btn-danger">Deletar</a>
                                         <button type="submit" class="btn btn-primary">Salvar</button>

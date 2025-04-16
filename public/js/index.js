@@ -58,6 +58,7 @@ function addComment(form, event) {
 }
 
 // TODO:
+// Terminar UPDATE POST
 // Rota para adicionar o comentario /api/comment/{id_meme}
 // Rota para remover /api/del/commment/{id_meme}
 // Rota para update /api/update/commment/{id_meme}
