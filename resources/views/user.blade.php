@@ -22,12 +22,11 @@
                 <a class="btn btn-primary" href="{{ route('updateForm', [Auth::user()->id, Auth::user()->name]) }}">Update</a>
             </div>
         </div>
-
         <div class="container mt-4 py-2">
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
                 @foreach ($memes as $meme)
                     <div class="col">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalOptionsPost">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalOptionsPost{{ $meme['id'] }}">
                             <div class="position-relative">
                                 <img class="img-fluid rounded" src="{{ asset('storage/' . $meme['image']) }}" alt="meme" style="object-fit: cover; width: 100%; height: 300px;">
                                 <div class="rounded-bottom position-absolute bottom-0 start-0 bg-dark bg-opacity-50 text-white p-1 w-100 d-flex gap-2 px-2">
@@ -37,33 +36,40 @@
                             </div>
                         </a>
                     </div>
+                    <div class="modal fade" id="modalOptionsPost{{ $meme['id'] }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalOptionsPostLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="modalOptionsPostLabel">Opções do Post</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ route("updateMeme", $meme['id']) }}" method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="mb-3">
+                                            <label class="form-label">Escolha uma imagem</label>
+                                            <input value="{{ asset('storage/' . $meme['image']) }}" type="file" class="form-control" accept="image/*" name="image" id="img-fild" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Nome do seu Meme</label>
+                                            <input value="{{ $meme['name'] }}" type="text" class="form-control" placeholder="Qual nome dele..." name="name" id="name-fild" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Descrição</label>
+                                            <textarea class="form-control" rows="3" placeholder="Adicione uma descrição..." name="description" id="description-fild" required></textarea>
+                                        </div>
+                                        <a href="{{ route('delMeme', $meme['id']) }}" class="btn btn-danger">Deletar</a>
+                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
             </div>
         </div>
     </main>
-
-    <div class="modal fade" id="modalOptionsPost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalOptionsPostLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modalOptionsPostLabel">Opções do Post</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="#" method="post">
-                        @csrf
-                        @method('PUT')
-                    </form>
-                    Conteúdo do post ou opções aqui.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Salvar</button>
-                </div>
-            </div>
-        </div>
-    </div>      
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -42,16 +42,14 @@ class MemesController extends Controller
 
         $meme->update($request->all());
 
-        return response()->json(
-            ["message"=>"meme foi modificado"], 201
-        );
+        return redirect()->route('index');
     }
 
     public function delMeme($id) {
         $meme = Meme::findOrFail($id);
 
         $meme->destroy($id);
-        return response()->json(["message"=>"Meme deletado com sucesso!", "meme"=> $meme], 201);
+        return redirect()->route('index');
     }
 
     public function removeLike($id) {

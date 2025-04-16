@@ -58,7 +58,6 @@ function addComment(form, event) {
 }
 
 // TODO:
-// Configurar like e deslike salvar na db
 // Rota para adicionar o comentario /api/comment/{id_meme}
 // Rota para remover /api/del/commment/{id_meme}
 // Rota para update /api/update/commment/{id_meme}
