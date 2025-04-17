@@ -90,9 +90,10 @@
                                 <span class="fw-bold">meme_master</span> Sensacional!
                             </div>
                         </div>
-                        <form class="comment-form" onsubmit="return addComment(this, event)">
-                            <input type="text" class="comment-input" placeholder="Adicione um comentário..." oninput="checkInput(this)">
-                            <button type="submit" class="post-btn" disabled="">Publicar</button>
+                        <form class="comment-form" data-meme-id="{{ $meme['id'] }}" onsubmit="return addComment(this, event)">
+                            @csrf
+                            <input type="text" name="text" class="comment-input" placeholder="Adicione um comentário..." oninput="checkInput(this)">
+                            <button type="submit" class="post-btn" disabled>Publicar</button>
                         </form>
                     </div>
                 @endforeach

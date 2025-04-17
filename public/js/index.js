@@ -43,23 +43,39 @@ function checkInput(input) {
 
 function addComment(form, event) {
     event.preventDefault();
+
     const input = form.querySelector(".comment-input");
     const commentsSection = form.previousElementSibling;
+    const memeId = form.getAttribute("data-meme-id");
 
     if (input.value.trim()) {
-        const newComment = document.createElement("div");
-        newComment.className = "comment";
-        newComment.innerHTML = `<span class="fw-bold">você</span> ${input.value}`;
-        commentsSection.appendChild(newComment);
-        input.value = "";
-        form.querySelector(".post-btn").disabled = true;
+        fetch(`/api/comment/${memeId}`, {
+            method: "POST",
+            body: JSON.stringify({ text: input.value.trim() }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.success) {
+                    const newComment = document.createElement("div");
+                    newComment.className = "comment";
+                    newComment.innerHTML = `<span class="fw-bold">${data.comment.user}</span> ${data.comment.text}`;
+                    commentsSection.appendChild(newComment);
+
+                    const counter = form
+                        .closest(".post-card")
+                        .querySelector(".nComments");
+                    counter.innerText = data.total;
+
+                    input.value = "";
+                    form.querySelector(".post-btn").disabled = true;
+                }
+            })
+            .catch((err) => console.log(err));
     }
+
     return false;
 }
 
 // TODO:
-// Terminar UPDATE POST
-// Rota para adicionar o comentario /api/comment/{id_meme}
-// Rota para remover /api/del/commment/{id_meme}
 // Rota para update /api/update/commment/{id_meme}
 // olhar numero de objs na pagina para fazer o load

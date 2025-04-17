@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commentary;
 use App\Models\Meme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -70,5 +71,33 @@ class MemesController extends Controller
         $meme->increment('likes');
 
         return response()->json(['success' => true, 'likes' => $meme->likes]);
+    }
+
+    public function addComment(Request $request, Meme $meme) {
+        $request->validate(['text' => 'required|string|max:255']);
+
+        $comment = $meme->comments()->create([
+            'text' => $request->text,
+            'user_id' => Auth::id(),
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'comment' => [
+                'user' => Auth::user()->name,
+                'text' => $comment->text,
+            ],
+            'total' => $meme->comments()->count(),
+        ]);
+    }
+
+    public function removeComment(Commentary $comment) {
+        if ($comment->user_id !== Auth::id()) {
+            return response()->json(['success' => false, 'message' => 'Unauthorized'], 403);
+        }
+
+        $comment->delete();
+
+        return response()->json(['success' => true]);
     }
 }

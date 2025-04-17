@@ -18,5 +18,7 @@ Route::post('/create', [MemesController::class, "createMeme"])->name('createMeme
 Route::put('/update/{id}', [MemesController::class, "updateMeme"])->name('updateMeme');
 Route::get('/delete/{id}', [MemesController::class, "delMeme"])->name('delMeme');
 
-Route::post('/api/liked/{meme}', [MemesController::class, "addLike"]);
-Route::post('/api/disliked/{meme}', [MemesController::class, "removeLike"]);
+Route::post('/api/liked/{meme}', [MemesController::class, "addLike"])->middleware('auth');
+Route::post('/api/disliked/{meme}', [MemesController::class, "removeLike"])->middleware('auth');
+Route::post('/api/comment/{meme}', [MemesController::class, "addComment"])->middleware('auth');
+Route::delete('/api/del/commment/{meme}', [MemesController::class, "removeComment"])->middleware('auth');

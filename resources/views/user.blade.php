@@ -12,18 +12,18 @@
 <body>
     <main>
         <div class="text-center shadow-lg pb-4">
-            <a href="{{ route('index') }}" class="d-block text-decoration-none">Voltar</a>
+            <a href="{{ route('index') }}" class="text-start ps-1 d-block text-decoration-none">Voltar</a>
             <div class="pt-3">
                 <img class="rounded-circle" src="https://i.pravatar.cc/150?img=1" alt="User Avatar">
             </div>
             <h3 class="lead pt-1">{{ Auth::user()->name }}</h3>
-            <div class="d-flex justify-content-center gap-2 pt-2">
-                <a class="btn btn-danger" href="{{ route('logout') }}">Sair</a>
-                <a class="btn btn-primary" href="{{ route('updateForm', [Auth::user()->id, Auth::user()->name]) }}">Update</a>
+            <div class="d-flex flex-column gap-2 align-items-center justify-content-center pt-2">
+                <a class="btn btn-danger w-25" href="{{ route('logout') }}">Sair</a>
+                <a class="btn btn-primary w-25" href="{{ route('updateForm', [Auth::user()->id, Auth::user()->name]) }}">Update</a>
             </div>
         </div>
         <div class="container mt-4 py-2">
-            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3">
                 @foreach ($memes as $meme)
                     <div class="col">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#modalOptionsPost{{ $meme['id'] }}">
@@ -49,11 +49,11 @@
                                         @method('PUT')
                                         <div class="mb-3">
                                             <label class="form-label">Escolha uma imagem</label>
-                                            <input value="{{ asset('storage/' . $meme['image']) }}" type="file" class="form-control" accept="image/*" name="image" id="img-fild" required>
+                                            <input value="{{ asset('storage/' . $meme['image']) }}" type="file" class="form-control" accept="image/*" name="image" id="img-fild">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Nome do seu Meme</label>
-                                            <input value="{{ $meme['name'] }}" type="text" class="form-control" placeholder="Qual nome dele..." name="name" id="name-fild" required>
+                                            <input value="{{ $meme['name'] }}" type="text" class="form-control" placeholder="Qual nome dele..." name="name" id="name-fild">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Descrição</label>
